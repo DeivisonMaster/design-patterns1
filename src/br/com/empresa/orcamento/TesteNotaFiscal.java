@@ -6,6 +6,8 @@ import java.util.List;
 
 public class TesteNotaFiscal {
 	public static void main(String[] args) {
+		/* 1. Criando um objeto NotaFiscal do sistema */
+		
 //		List<ItemDaNota> itens = Arrays.asList(new ItemDaNota("item 1", 200.0), new ItemDaNota("item 2", 400.0));
 //		
 //		double valorTotal = 0;
@@ -17,6 +19,10 @@ public class TesteNotaFiscal {
 //		
 //		NotaFiscal nf = new NotaFiscal("razao social", "cnpj", Calendar.getInstance(), valorTotal, impostos, itens, "obs");
 //	
+		
+		
+		
+		/* 2. Criando um objeto NotaFiscal do sistema utilizando os conceitos Builder */
 		
 		CriadorNotaFiscal criador = new CriadorNotaFiscal();
 		criador.paraEmpresa("brasil cards");

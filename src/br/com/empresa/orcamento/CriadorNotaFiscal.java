@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/* DESIGN PATTERN BUILDER
+ * 
+ * - separar a construção de um objeto complexo de sua representação de modo que 
+ *  o mesmo processo de construção possa criar diferentes representaçoes
+ * */
 public class CriadorNotaFiscal {
 	private String razaoSocial;
 	private String cnpj;
@@ -12,9 +17,17 @@ public class CriadorNotaFiscal {
 	private double impostos;
 	private String observacoes;
 	private Calendar dataAtual;
+	private List<AcaoAposGerarNota> todasAcoesSeremExecutadas;
+	
+	
 	
 	public CriadorNotaFiscal() {
 		this.itens = new ArrayList<ItemDaNota>();
+		this.todasAcoesSeremExecutadas = new ArrayList<AcaoAposGerarNota>();
+	}
+	
+	public void adicionaAcao(AcaoAposGerarNota acao){
+		this.todasAcoesSeremExecutadas.add(acao);
 	}
 
 	public void paraEmpresa(String razaoSocial) {
@@ -42,9 +55,15 @@ public class CriadorNotaFiscal {
 	
 	// Criando a NF
 	public NotaFiscal constroi(){
-		return new NotaFiscal(razaoSocial, cnpj, dataAtual, valorBruto, impostos, itens, observacoes);
+		NotaFiscal nf = new NotaFiscal(razaoSocial, cnpj, dataAtual, valorBruto, impostos, itens, observacoes);
+		
+		for(AcaoAposGerarNota acao : todasAcoesSeremExecutadas){
+			acao.executa(nf);
+		}
+		return nf;
 	}
 	
+
 	@Override
 	public String toString() {
 		return "Razao Social " + this.razaoSocial;

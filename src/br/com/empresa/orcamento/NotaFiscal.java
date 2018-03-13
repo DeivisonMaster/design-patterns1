@@ -12,6 +12,7 @@ public class NotaFiscal {
 	private List<ItemDaNota> itens;
 	private String observacoes;
 	
+	
 	public NotaFiscal(String razaoSocial, String cnpj, Calendar dataEmissao, double valorBruto, double impostos,
 			List<ItemDaNota> itens, String observacoes) {
 		this.razaoSocial = razaoSocial;
